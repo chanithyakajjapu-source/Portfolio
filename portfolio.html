@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Chanithya Shree — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0B0E14;
+    --bg-panel: #131722;
+    --text: #EDEFF4;
+    --muted: #8B93A3;
+    --accent: #F2B84B;
+    --accent-2: #5EC8D8;
+    --line: #232838;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      --bg: #F7F5F0;
+      --bg-panel: #FFFFFF;
+      --text: #191B20;
+      --muted: #63697A;
+      --accent: #B5790A;
+      --accent-2: #1B7A8C;
+      --line: #E3E0D8;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0B0E14; --bg-panel: #131722; --text: #EDEFF4; --muted: #8B93A3; --accent: #F2B84B; --accent-2: #5EC8D8; --line: #232838;
+  }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); background: var(--bg); }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ---- Hero ---- */
+  .hero {
+    position: relative;
+    padding: 5rem 1.5rem 5.5rem;
+    overflow: hidden;
+    border-bottom: 1px solid var(--line);
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: -220px; right: -160px;
+    width: 520px; height: 520px;
+    background: radial-gradient(circle, rgba(242,184,75,0.18) 0%, rgba(242,184,75,0) 70%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: "";
+    position: absolute;
+    bottom: -260px; left: -180px;
+    width: 460px; height: 460px;
+    background: radial-gradient(circle, rgba(94,200,216,0.14) 0%, rgba(94,200,216,0) 70%);
+    pointer-events: none;
+  }
+  .hero-inner { max-width: 720px; margin: 0 auto; position: relative; }
+  .node-line { position: absolute; inset: 0; pointer-events: none; opacity: 0.5; }
+
+  .role-mono {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    color: var(--accent);
+    margin: 0 0 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    opacity: 0;
+    animation: rise 0.7s ease-out 0.05s forwards;
+  }
+  .role-mono .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 10px var(--accent);
+  }
+  h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: clamp(2.4rem, 6.5vw, 3.7rem);
+    line-height: 1.05;
+    margin: 0 0 1.1rem;
+    letter-spacing: -0.01em;
+    opacity: 0;
+    animation: rise 0.7s ease-out 0.15s forwards;
+  }
+  .bio {
+    color: var(--muted);
+    font-size: 1.08rem;
+    max-width: 56ch;
+    margin: 0 0 1.7rem;
+    opacity: 0;
+    animation: rise 0.7s ease-out 0.28s forwards;
+  }
+  .contact-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem 1rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.83rem;
+    opacity: 0;
+    animation: rise 0.7s ease-out 0.4s forwards;
+  }
+  .contact-row a, .contact-row span {
+    color: var(--text);
+    text-decoration: none;
+    background: var(--bg-panel);
+    border: 1px solid var(--line);
+    padding: 0.45rem 0.85rem;
+    border-radius: 5px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .contact-row a:hover { border-color: var(--accent); color: var(--accent); }
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .role-mono, h1, .bio, .contact-row { animation: none; opacity: 1; }
+  }
+
+  /* ---- Body ---- */
+  .wrap { max-width: 720px; margin: 0 auto; padding: 4rem 1.5rem 5rem; }
+  section { margin-bottom: 3.6rem; }
+  h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin: 0 0 1.6rem;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+  }
+  h2::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--line);
+  }
+
+  /* Projects */
+  .project {
+    position: relative;
+    padding: 1.4rem 0 1.4rem 1.3rem;
+    border-bottom: 1px solid var(--line);
+    border-left: 2px solid var(--line);
+    transition: border-color 0.2s;
+  }
+  .project:hover { border-left-color: var(--accent); }
+  .project:last-child { border-bottom: none; }
+  .project-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 500;
+    font-size: 1.2rem;
+    margin: 0 0 0.45rem;
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+  }
+  .project-status {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--accent-2);
+    font-weight: 400;
+  }
+  .project-desc { color: var(--muted); margin: 0 0 0.7rem; max-width: 60ch; }
+  .project-link {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .project-link:hover { text-decoration: underline; }
+
+  /* Skills */
+  .skills-grid { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+  .skill-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    background: var(--bg-panel);
+    border: 1px solid var(--line);
+    padding: 0.4rem 0.8rem;
+    border-radius: 5px;
+    color: var(--text);
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .skill-tag:hover { border-color: var(--accent-2); color: var(--accent-2); }
+
+  /* Timeline (education + certs) */
+  .timeline { position: relative; padding-left: 1.6rem; }
+  .timeline::before {
+    content: "";
+    position: absolute;
+    left: 5px; top: 6px; bottom: 6px;
+    width: 1px;
+    background: var(--line);
+  }
+  .t-item { position: relative; padding-bottom: 1.5rem; }
+  .t-item:last-child { padding-bottom: 0; }
+  .t-item::before {
+    content: "";
+    position: absolute;
+    left: -1.6rem; top: 5px;
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--accent);
+  }
+  .t-name { font-weight: 500; font-family: 'Space Grotesk', sans-serif; font-size: 1.02rem; }
+  .t-sub { color: var(--muted); font-size: 0.92rem; margin-top: 0.15rem; }
+  .t-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--accent-2);
+    margin-top: 0.3rem;
+    display: inline-block;
+  }
+
+  footer {
+    padding-top: 2rem;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+  }
+
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  @media (max-width: 480px) {
+    .hero { padding: 3.4rem 1.2rem 3.8rem; }
+    .wrap { padding: 3rem 1.2rem 3.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <p class="role-mono"><span class="dot"></span>aspiring software developer · ai/ml & data science</p>
+    <h1>Kajjapu Chanithya Shree</h1>
+    <p class="bio">B.Tech student building a foundation in Python, data structures, and machine learning. I like turning models into things people can actually use — from a skin-disease classifier to a mental wellness platform live on the web.</p>
+    <div class="contact-row">
+      <a href="mailto:chanithyakajjapu@gmail.com">chanithyakajjapu@gmail.com</a>
+      <a href="tel:+919652793191">+91 96527 93191</a>
+      <a href="https://linkedin.com/in/chanithya" target="_blank" rel="noopener">linkedin.com/in/chanithya</a>
+      <span>Nizamabad, Telangana</span>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section>
+    <h2>Projects</h2>
+
+    <div class="project">
+      <p class="project-title">MindMitra — Mental Wellness Platform</p>
+      <p class="project-desc">A web platform designed and built to support mental wellness, deployed live for public access.</p>
+      <a class="project-link" href="https://mindmitra.ccbp.tech" target="_blank" rel="noopener">mindmitra.ccbp.tech →</a>
+    </div>
+
+    <div class="project">
+      <p class="project-title">CNN-Based Skin Disease Prediction Model</p>
+      <p class="project-desc">A convolutional neural network that classifies skin conditions from image data, applying core ML and image-processing techniques.</p>
+    </div>
+
+    <div class="project">
+      <p class="project-title">AI Shopping Assistant</p>
+      <p class="project-desc">An AI-driven assistant that helps users navigate product choices and get personalized shopping recommendations.</p>
+    </div>
+
+    <div class="project">
+      <p class="project-title">Smart AI Camera <span class="project-status">in progress</span></p>
+      <p class="project-desc">An intelligent camera application using AI for real-time recognition and analysis.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Skills</h2>
+    <div class="skills-grid">
+      <span class="skill-tag">Python</span>
+      <span class="skill-tag">Data Structures & Algorithms</span>
+      <span class="skill-tag">SQL</span>
+      <span class="skill-tag">HTML / CSS</span>
+      <span class="skill-tag">Bootstrap</span>
+      <span class="skill-tag">Flexbox</span>
+      <span class="skill-tag">NumPy</span>
+      <span class="skill-tag">Pandas</span>
+      <span class="skill-tag">Matplotlib</span>
+      <span class="skill-tag">Seaborn</span>
+      <span class="skill-tag">Machine Learning</span>
+      <span class="skill-tag">Deep Learning</span>
+      <span class="skill-tag">Generative AI</span>
+      <span class="skill-tag">DBMS</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>Education</h2>
+    <div class="timeline">
+      <div class="t-item">
+        <div class="t-name">B.Tech (Honours), Vignan University</div>
+        <div class="t-sub">In progress</div>
+        <div class="t-meta">2024 – 2028</div>
+      </div>
+      <div class="t-item">
+        <div class="t-name">Intermediate (MPC), Vignan College</div>
+        <div class="t-sub">91%</div>
+        <div class="t-meta">2024</div>
+      </div>
+      <div class="t-item">
+        <div class="t-name">SSC, Liberty High School</div>
+        <div class="t-sub">87%</div>
+        <div class="t-meta">2022</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Certifications</h2>
+    <div class="timeline">
+      <div class="t-item">
+        <div class="t-name">Star Performer, AICTE OIB-SIP Internship — Oasis Infobyte</div>
+        <div class="t-sub">Recognized for exceptional dedication during a 1-month Web Development & Designing internship</div>
+        <div class="t-meta">Aug 2026</div>
+      </div>
+      <div class="t-item">
+        <div class="t-name">Build Your Own Responsive Website — CCBP 4.0 / NxtWave</div>
+        <div class="t-sub">Bootstrap, Flexbox</div>
+        <div class="t-meta">Aug 2026</div>
+      </div>
+      <div class="t-item">
+        <div class="t-name">Build Your Own Static Website — CCBP 4.0 / NxtWave</div>
+        <div class="t-sub">HTML, CSS, Bootstrap</div>
+        <div class="t-meta">Sep 2026</div>
+      </div>
+      <div class="t-item">
+        <div class="t-name">Waste to Wealth</div>
+        <div class="t-sub">Certification</div>
+      </div>
+      <div class="t-item">
+        <div class="t-name">Smart India Hackathon</div>
+        <div class="t-sub">Participation Certificate</div>
+      </div>
+      <div class="t-item">
+        <div class="t-name">NPTEL — E-Business</div>
+        <div class="t-sub">Certification</div>
+      </div>
+      <div class="t-item">
+        <div class="t-name">IIT Kharagpur — Enigma & Ideathon</div>
+        <div class="t-sub">Competition Certificates</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Nizamabad, Telangana, India — open to entry-level AI/ML and software roles.</p>
+  </footer>
+
+</div>
+</body>
+</html>
